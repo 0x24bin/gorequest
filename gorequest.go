@@ -46,17 +46,21 @@ func HttpRequest(bot *gostruct.BotData) http.Response {
 	if err == nil {
 		bot.HttpRequest.Response.Location = *location
 	}
-	cookies := make(map[string]string)
-	for _, cookie := range res.Cookies() {
-		cookies[cookie.Name] = cookie.Value
+	if bot.HttpRequest.Request.ReadResponseCookies {
+		cookies := make(map[string]string)
+		for _, cookie := range res.Cookies() {
+			cookies[cookie.Name] = cookie.Value
+		}
+		bot.HttpRequest.Response.Cookies = cookies
 	}
-	bot.HttpRequest.Response.Cookies = cookies
 	bot.HttpRequest.Response.Status = res.Status
 	bot.HttpRequest.Response.StatusCode = res.StatusCode
-	bot.HttpRequest.Response.Headers = gotools.MapStringSliceToMapString(res.Header)
+	if bot.HttpRequest.Request.ReadResponseHeaders {
+		bot.HttpRequest.Response.Headers = gotools.MapStringSliceToMapString(res.Header)
+	}
 	bot.HttpRequest.Response.Protocol = res.Proto
 	bot.HttpRequest.Response.ContentLength = res.ContentLength
-	if bot.HttpRequest.Request.ReadResponse {
+	if bot.HttpRequest.Request.ReadResponseBody {
 		resp, err := ioutil.ReadAll(res.Body)
 		if err != nil {
 			log.Panic(err)

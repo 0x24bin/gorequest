@@ -6,6 +6,10 @@ github.com/kawacode/goproxy v1.0.2 h1:NJ/ABm2KEEUTSb0CPNXIq5mxfS/nbJpGxDHj23MUKo
 github.com/kawacode/goproxy v1.0.2/go.mod h1:vYU/APqdXfekvcwLVDMbB7CYbK9fwECuO9blsPkY3gs=
 github.com/kawacode/gostruct v1.0.0 h1:QBBrT6GczuAOF9i6nE6k8CuahkzRGEYplL0KbD8YPMM=
 github.com/kawacode/gostruct v1.0.0/go.mod h1:PtB+BYt7CCUDKlp5ygwWtrk/TZQs3QenxjJPpT4XJdo=
+github.com/kawacode/gostruct v1.0.2 h1:7ds3DRCdDcrI3A3CYlzMtwn95/1oiveRNkO9BQo9mUg=
+github.com/kawacode/gostruct v1.0.2/go.mod h1:BdPbjQDnFWTxu2pxr9IDlr3b+28DrbRamG4zzvYRw4c=
+github.com/kawacode/gostruct v1.0.3 h1:1M31t6Qm8ns+eChWelE6892odR/6ZI9U0tiTJxFotQk=
+github.com/kawacode/gostruct v1.0.3/go.mod h1:BdPbjQDnFWTxu2pxr9IDlr3b+28DrbRamG4zzvYRw4c=
 github.com/kawacode/gotools v1.0.0 h1:kbkQ9B8uHe4lWEyoW2Nd7cWJsLVHoxsOuzt2eHuW3eo=
 github.com/kawacode/gotools v1.0.0/go.mod h1:vMQliVYYciGXo718J8siSeUSAMgsKQ+yA4KxJI9PahU=
 github.com/kawacode/utls v1.1.2 h1:Lks35g0Z3HtRV7DBbEFfd0PqiTdGuM0HNsUccexFzzs=
