@@ -4,19 +4,11 @@ This Project is made for spoofing Ja3 and Akamai fingerprint, it is also very si
 # 🚀 Features
 
 ```markdown
-🧱 Blocks
-- Map_string_slice_int_tools
-- OStools
-- Randomtools (Ja3 ranoomizer, header randomizer, Order randomizer etc)
-- Sufflleslice
-- Httprequest
-- Delay function
-- Parse between two strings
 
 🌐 HTTPRequest Funtcion
 - [High-performance] Built-in goroutine pool used for handling asynchronous requests
 - Custom header ordering via https://github.com/useflyent/fhttp
-- Proxy support (SOCKS4/SOCKS4a, HTTP/s, SOCKS5)
+- Proxy support (SOCKS4/SOCKS4a, HTTP/s, SOCKS5, Proxyless)
 - Ja3 Customization
 - HTTP/2 and HTTP1 Support
 - HTTP2 Setting customization
@@ -129,6 +121,27 @@ func main() {
 }
 
 ```
+### HTTP Request using gotyphon with HelloClient
+```go
+package main
+
+import (
+	gorequest "github.com/kawacode/gorequest"
+  gostruct "github.com/kawacode/gostruct"
+)
+
+func main() {
+	var bot gostruct.BotData                                                         // Creating a variable called `bot` and setting it to the type `gotyphon.BotData`.
+	bot.HttpRequest.Request.URL = "https://tls.peet.ws/api/all"                      // Setting the URL of the request.
+	bot.HttpRequest.Request.Method = "GET"                                           // Used to set the method of the request.
+	bot.HttpRequest.Request.Protocol = "2"                                           // Used to set the protocol version of the request.
+	bot.HttpRequest.Request.ReadResponse = true                                      // Used to read the response from the server.
+	bot.HttpRequest.Request.HelloClient = *gotools.GetHelloClient("HelloChrome_105")     // Setting the JA3 fingerprint of the request. Check below for supported HelloClients
+	gorequest.HttpRequest(&bot)                                                      // A function that is used to send a request to the server.
+	println(bot.HttpRequest.Response.Source)                                         // Printing the response from the server.
+}
+
+```
 ### HTTP Request using gotyphon with MaxRedirects or disable redirects
 ```go
 package main
@@ -169,6 +182,48 @@ func main() {
 	gorequest.HttpRequest(&bot)                                  // A function that is used to send a request to the server.
 	println(bot.HttpRequest.Response.Source)                    // Printing the response from the server.
 }
+```
+### Supported HelloClient's: 
+```go
+HelloCustom
+HelloChrome_58
+HelloChrome_62
+HelloChrome_70
+HelloChrome_72
+HelloChrome_83
+HelloChrome_87
+HelloChrome_96
+HelloChrome_100
+HelloChrome_103
+HelloChrome_104
+HelloChrome_105
+HelloChrome_Auto
+HelloFirefox_55
+HelloFirefox_56
+HelloFirefox_63
+HelloFirefox_65
+HelloFirefox_102
+HelloFirefox_104
+HelloFirefox_Auto
+HelloAndroid_11_OkHttp
+HelloIOS_11_1
+HelloIOS_12_1
+HelloIOS_13
+HelloIOS_14
+HelloIOS_15_5
+HelloIOS_15_6
+HelloIOS_Auto
+HelloSafari_15_3
+HelloSafari_15_5
+HelloSafari_Auto
+HelloGolang
+HelloOpera_89
+HelloOpera_90
+HelloOpera_Auto
+HelloRandomized
+HelloRandomizedALPN
+HelloRandomizedNoALPN
+
 ```
 ## LICENSE
 ### GPL3 LICENSE SYNOPSIS
