@@ -71,10 +71,10 @@ func CreateHttp1Client(bot *gostruct.BotData) (*http.Client, error) {
 				uconn = tls.UClient(conn, config, bot.HttpRequest.Request.HelloClient)
 				if strings.Contains(bot.HttpRequest.Request.HelloClient.Str(), "CustomInternal") {
 					if bot.HttpRequest.Request.Ja3 == "" {
-						return nil, errors.New("missing x-kc-clientspec")
+						return nil, errors.New("missing clientspec/Ja3")
 					}
 					if bot.HttpRequest.Request.Protocol != "2" && bot.HttpRequest.Request.Protocol != "1" {
-						return nil, errors.New("missing x-kc-protocol")
+						bot.HttpRequest.Request.Protocol = "2"
 					}
 					tlsspec, err := gotools.ParseJA3(bot.HttpRequest.Request.Ja3, bot.HttpRequest.Request.Protocol)
 					if err != nil {
