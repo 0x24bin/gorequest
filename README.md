@@ -192,7 +192,8 @@ package main
 
 import (
 	gorequest "github.com/kawacode/gorequest"
-  gostruct "github.com/kawacode/gostruct"
+        gostruct "github.com/kawacode/gostruct"
+	json "encoding/json"
 )
 
 func main() {
