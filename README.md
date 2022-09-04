@@ -201,8 +201,12 @@ func main() {
 	bot.HttpRequest.Request.Method = "POST"                     // Used to set the method of the request.
 	bot.HttpRequest.Request.Protocol = "2"                      // Used to set the protocol version of the request.
 	bot.HttpRequest.Request.ReadResponse = true                 // Used to read the response from the server.
-	bot.HttpRequest.Request.Payload = "user=joe&pass=ok"        // Setting the payload of the request.
 	gorequest.HttpRequest(&bot)                                  // A function that is used to send a request to the server.
+	err := json.Unmarshal([]byte(`{"windowupdate: 15663105, "frames": [{"header_table_size":65536},{"max_concurrent_streams":1000},{"initial_window_size":6291456},{"max_header_list_size":262144}], "priorities":[]}`), &bot.HttpRequest.Request.HTTP2TRANSPORT.Settings) // setting the priority, frames and the connectionflow.
+	if err != nil {
+	          json.Unmarshal([]byte(`{}`), &bot.HttpRequest.Request.HTTP2TRANSPORT.Settings)
+	}
+	bot.HttpRequest.Request.Payload = "user=joe&pass=ok"        // Setting the payload of the request.
 	println(bot.HttpRequest.Response.Source)                    // Printing the response from the server.
 }
 ```
