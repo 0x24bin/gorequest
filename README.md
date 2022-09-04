@@ -3,13 +3,16 @@ This Project is made for spoofing Ja3 and Akamai fingerprint, it is also very si
 
 # 🚀 Features
 
-```markdown
 
-🌐 HTTPRequest Funtcion
-- [High-performance] Built-in goroutine pool used for handling asynchronous requests
-- Custom header ordering via https://github.com/useflyent/fhttp
-- Proxy support (SOCKS4/SOCKS4a, HTTP/s, SOCKS5, Proxyless)
+```markdown
+- High-performance
+- Custom Header ordering via https://github.com/kawacode/fhttp
+- Custom Pseudo header ordering via https://github.com/kawacode/fhttp
+- Custom Frame Setting ordering via https://github.com/kawacode/fhttp
+- Able to spoof akamai fingerprint using frame & priority settings
+- All Proxy types supported (SOCKS4/SOCKS4a, HTTP/s, SOCKS5, Proxyless)
 - Ja3 Customization
+- Supported many HelloClients
 - HTTP/2 and HTTP1 Support
 - HTTP2 Setting customization
 - HTTP1 Setting customization
@@ -41,7 +44,7 @@ func main() {
 }
 
 ```
-### HTTP request using gotyphon with custom and ordered headers
+### HTTP request using gorequest with custom and ordered headers
 ```go
 package main
 
@@ -51,7 +54,7 @@ import (
 )
 
 func main() {
-	var bot gostruct.BotData                                    // Creating a variable called `bot` and setting it to the type `gotyphon.BotData`.
+	var bot gostruct.BotData                                    // Creating a variable called `bot` and setting it to the type `gorequest.BotData`.
 	bot.HttpRequest.Request.URL = "https://tls.peet.ws/api/all" // Setting the URL of the request.
 	bot.HttpRequest.Request.Method = "GET"                      // Used to set the method of the request.
 	bot.HttpRequest.Request.Protocol = "2"                      // Used to set the protocol version of the request.
@@ -77,7 +80,7 @@ func main() {
 }
 
 ```
-### HTTP Request using gotyphon with proxy
+### HTTP Request using gorequest with proxy
 ```go
 package main
 
@@ -87,7 +90,7 @@ import (
 )
 
 func main() {
-	var bot gostruct.BotData                                            // Creating a variable called `bot` and setting it to the type `gotyphon.BotData`.
+	var bot gostruct.BotData                                            // Creating a variable called `bot` and setting it to the type `gostruct.BotData`.
 	bot.HttpRequest.Request.URL = "https://tls.peet.ws/api/all"         // Setting the URL of the request.
 	bot.HttpRequest.Request.Method = "GET"                              // Used to set the method of the request.
 	bot.HttpRequest.Request.Protocol = "2"                              // Used to set the protocol version of the request.
@@ -99,7 +102,7 @@ func main() {
 }
 
 ```
-### HTTP Request using gotyphon with custom Ja3
+### HTTP Request using gorequest with custom Ja3
 ```go
 package main
 
@@ -109,7 +112,7 @@ import (
 )
 
 func main() {
-	var bot gostruct.BotData                                                         // Creating a variable called `bot` and setting it to the type `gotyphon.BotData`.
+	var bot gostruct.BotData                                                         // Creating a variable called `bot` and setting it to the type `gostruct.BotData`.
 	bot.HttpRequest.Request.URL = "https://tls.peet.ws/api/all"                      // Setting the URL of the request.
 	bot.HttpRequest.Request.Method = "GET"                                           // Used to set the method of the request.
 	bot.HttpRequest.Request.Protocol = "2"                                           // Used to set the protocol version of the request.
@@ -121,7 +124,7 @@ func main() {
 }
 
 ```
-### HTTP Request using gotyphon with HelloClient
+### HTTP Request using gorequest with HelloClient
 ```go
 package main
 
@@ -131,7 +134,7 @@ import (
 )
 
 func main() {
-	var bot gostruct.BotData                                                         // Creating a variable called `bot` and setting it to the type `gotyphon.BotData`.
+	var bot gostruct.BotData                                                         // Creating a variable called `bot` and setting it to the type `gostruct.BotData`.
 	bot.HttpRequest.Request.URL = "https://tls.peet.ws/api/all"                      // Setting the URL of the request.
 	bot.HttpRequest.Request.Method = "GET"                                           // Used to set the method of the request.
 	bot.HttpRequest.Request.Protocol = "2"                                           // Used to set the protocol version of the request.
@@ -142,7 +145,7 @@ func main() {
 }
 
 ```
-### HTTP Request using gotyphon with MaxRedirects or disable redirects
+### HTTP Request using gorequest with MaxRedirects or disable redirects
 ```go
 package main
 
@@ -152,7 +155,7 @@ import (
 )
 
 func main() {
-	var bot gostruct.BotData                                    // Creating a variable called `bot` and setting it to the type `gotyphon.BotData`.
+	var bot gostruct.BotData                                    // Creating a variable called `bot` and setting it to the type `gostruct.BotData`.
 	bot.HttpRequest.Request.URL = "https://tls.peet.ws/api/all" // Setting the URL of the request.
 	bot.HttpRequest.Request.Method = "GET"                      // Used to set the method of the request.
 	bot.HttpRequest.Request.Protocol = "2"                      // Used to set the protocol version of the request.
@@ -163,7 +166,7 @@ func main() {
 }
 
 ```
-### HTTP Request using gotyphon with Payload
+### HTTP Request using gorequest with Payload
 ```go
 package main
 
@@ -173,7 +176,27 @@ import (
 )
 
 func main() {
-	var bot gostruct.BotData                                    // Creating a variable called `bot` and setting it to the type `gotyphon.BotData`.
+	var bot gostruct.BotData                                    // Creating a variable called `bot` and setting it to the type `gostruct.BotData`.
+	bot.HttpRequest.Request.URL = "https://tls.peet.ws/api/all" // Setting the URL of the request.
+	bot.HttpRequest.Request.Method = "POST"                     // Used to set the method of the request.
+	bot.HttpRequest.Request.Protocol = "2"                      // Used to set the protocol version of the request.
+	bot.HttpRequest.Request.ReadResponse = true                 // Used to read the response from the server.
+	bot.HttpRequest.Request.Payload = "user=joe&pass=ok"        // Setting the payload of the request.
+	gorequest.HttpRequest(&bot)                                  // A function that is used to send a request to the server.
+	println(bot.HttpRequest.Response.Source)                    // Printing the response from the server.
+}
+```
+### HTTP Request using gorequest with Frame and Priority ordering and customization
+```go
+package main
+
+import (
+	gorequest "github.com/kawacode/gorequest"
+  gostruct "github.com/kawacode/gostruct"
+)
+
+func main() {
+	var bot gostruct.BotData                                    // Creating a variable called `bot` and setting it to the type `gostruct.BotData`.
 	bot.HttpRequest.Request.URL = "https://tls.peet.ws/api/all" // Setting the URL of the request.
 	bot.HttpRequest.Request.Method = "POST"                     // Used to set the method of the request.
 	bot.HttpRequest.Request.Protocol = "2"                      // Used to set the protocol version of the request.
