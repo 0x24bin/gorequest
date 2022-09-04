@@ -95,7 +95,7 @@ func main() {
 	bot.HttpRequest.Request.Method = "GET"                              // Used to set the method of the request.
 	bot.HttpRequest.Request.Protocol = "2"                              // Used to set the protocol version of the request.
 	bot.HttpRequest.Request.ReadResponse = true                         // Used to read the response from the server.
-	bot.HttpRequest.Request.Proxy = "type://127.0.0.1:1080:user:password" // Setting the proxy of the request. Supported types: "proxyless","http", "https", "socks4", "socks4a", "socks5"
+	bot.HttpRequest.Request.Proxy = "type://127.0.0.1:1080:user:password" // Setting the proxy of the request. Supported types: ( "proxyless","http", "https", "socks4", "socks4a", "socks5" ), Without Auth format: type://example.com:port
 	bot.HttpRequest.Request.UseProxy = true                               // Used to tell the program to use the proxy.
 	gorequest.HttpRequest(&bot)                                          // A function that is used to send a request to the server.
 	println(bot.HttpRequest.Response.Source)                            // Printing the response from the server.
