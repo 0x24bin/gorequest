@@ -133,7 +133,7 @@ func CreateHttp1Client(bot *gostruct.BotData) (*http.Client, error) {
 // It creates an HTTP2 client with the ability to use a proxy, disable redirects, and set a timeout, that uses a custom TLS dialer that uses a custom JA3 fingerprint
 func CreateHttp2Client(bot *gostruct.BotData) (*http.Client, error) {
 	http2transport := http2.Transport{
-		AllowHTTP:                  bot.HttpRequest.Request.HTTP2TRANSPORT.AllowHTTP,
+		AllowHTTP:                  bot.HttpRequest.Request.InsecureSkipVerify,
 		StrictMaxConcurrentStreams: false,
 		DisableCompression:         bot.HttpRequest.Request.DisableCompression,
 		DialTLS: func(network, addr string, cfg *tls.Config) (net.Conn, error) {
