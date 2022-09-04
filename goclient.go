@@ -40,7 +40,6 @@ func CreateHttp1Client(bot *gostruct.BotData) (*http.Client, error) {
 	http1transport := http.Transport{
 		DisableCompression: bot.HttpRequest.Request.DisableCompression,
 		DisableKeepAlives:  true,
-		ForceAttemptHTTP2:  bot.HttpRequest.Request.HTTP1TRANSPORT.ForceAttemptHTTP2,
 		DialTLSContext: func(ctx context.Context, network, addr string) (net.Conn, error) {
 			tls.EnableWeakCiphers()
 			var conn net.Conn
