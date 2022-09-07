@@ -33,6 +33,7 @@ func HttpRequest(bot *gostruct.BotData) http.Response {
 	if err != nil {
 		log.Panic(err)
 	}
+	req.Close = true
 	req.Header = gotools.MapStringToMapStringSlice(bot.HttpRequest.Request.Headers, bot)
 	client, err := CreateClient(bot)
 	if err != nil {
@@ -42,6 +43,7 @@ func HttpRequest(bot *gostruct.BotData) http.Response {
 	if err != nil {
 		log.Panic(err)
 	}
+	defer res.Body.Close()
 	location, err := res.Location()
 	if err == nil {
 		bot.HttpRequest.Response.Location = *location
@@ -74,7 +76,6 @@ func HttpRequest(bot *gostruct.BotData) http.Response {
 	bot.HttpRequest.Response.ProtoMajor = res.ProtoMajor
 	bot.HttpRequest.Response.ProtoMinor = res.ProtoMinor
 	bot.HttpRequest.Response.WasUncompressed = res.Uncompressed
-	defer res.Body.Close()
 	client.CloseIdleConnections()
 	return *res
 }
