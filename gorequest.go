@@ -67,11 +67,15 @@ func HttpRequest(bot *gostruct.BotData) http.Response {
 		if err != nil {
 			log.Panic(err)
 		}
-		source, err := gotools.DecompressGzip(string(resp))
-		if err != nil {
+		if (!bot.HttpRequest.Request.ReadResponseHeaders){
+			source, err := gotools.DecompressGzip(string(resp))
+			if err != nil {
+				bot.HttpRequest.Response.Source = string(resp)
+			}
+			bot.HttpRequest.Response.Source = source
+		} else {
 			bot.HttpRequest.Response.Source = string(resp)
 		}
-		bot.HttpRequest.Response.Source = source
 	}
 	bot.HttpRequest.Response.ProtoMajor = res.ProtoMajor
 	bot.HttpRequest.Response.ProtoMinor = res.ProtoMinor

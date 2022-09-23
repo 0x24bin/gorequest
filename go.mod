@@ -6,8 +6,10 @@ require (
 	github.com/kawacode/fhttp v0.4.5
 	github.com/kawacode/goproxy v1.0.2
 	github.com/kawacode/gostruct v1.0.3
-	github.com/kawacode/utls v1.1.2
+	github.com/kawacode/utls v1.1.3
 )
+
+require github.com/bogdanfinn/utls v1.1.0 // indirect
 
 require (
 	github.com/andybalholm/brotli v1.0.4 // indirect
